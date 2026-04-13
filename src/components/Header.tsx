@@ -97,20 +97,6 @@ const Header = () => {
                 !isScrolled && 'shadow-md'
               }`}>
                 Get in touch
-                {/* <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  className="h-4 w-4" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
-                  stroke="currentColor"
-                >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M17 8l4 4m0 0l-4 4m4-4H3" 
-                  />
-                </svg> */}
               </button>
             </div>
 
@@ -129,52 +115,30 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Navigation Menu */}
-        <div
-          className={`absolute inset-0 top-16 md:hidden transition-transform duration-300 ease-in-out ${
-            isMenuOpen ? 'translate-x-0' : 'translate-x-full'
-          } `}
-        >
-          <div className="flex flex-col h-full">
-            <nav className="flex flex-col p-6 space-y-2">
-              {navLinks.map((link) => (
-                <a
-                  key={link.name}
-                  href={link.href}
-                  onClick={closeMenu}
-                  className={`px-4 py-3 text-lg font-medium rounded-xl transition-all duration-200 ${
-                    isScrolled 
-                      ? 'text-gray-700 hover:text-[#0066FF] hover:bg-[#00D4FF]/10' 
-                      : 'text-gray-200 hover:text-white hover:bg-white/10'
-                  }`}
-                >
-                  {link.name}
-                </a>
-              ))}
-              <div className={`pt-4 mt-2 border-t ${
-                isScrolled ? 'border-[#00D4FF]/20' : 'border-white/10'
-              }`}>
-                <button className="w-full px-3 py-1.5 text-sm bg-gradient-to-r from-[#00D4FF] to-[#0066FF] text-white font-medium rounded-full transition-all duration-300 flex items-center justify-center gap-1.5">
-                  Get in touch
-                  {/* <svg 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    className="h-4 w-4" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
+        {/* Mobile Navigation Menu - Fixed background and positioning */}
+        {isMenuOpen && (
+          <div className="fixed inset-0 top-16 md:hidden bg-white shadow-lg z-40">
+            <div className="flex flex-col h-full overflow-y-auto">
+              <nav className="flex flex-col p-6 space-y-2">
+                {navLinks.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={closeMenu}
+                    className="px-4 py-3 text-lg font-medium rounded-xl transition-all duration-200 text-gray-800 hover:text-[#0066FF] hover:bg-gray-100"
                   >
-                    <path 
-                      strokeLinecap="round" 
-                      strokeLinejoin="round" 
-                      strokeWidth={2} 
-                      d="M17 8l4 4m0 0l-4 4m4-4H3" 
-                    />
-                  </svg> */}
-                </button>
-              </div>
-            </nav>
+                    {link.name}
+                  </a>
+                ))}
+                <div className="pt-4 mt-2 border-t border-gray-200">
+                  <button className="w-full px-3 py-1.5 text-sm bg-gradient-to-r from-[#00D4FF] to-[#0066FF] text-white font-medium rounded-full transition-all duration-300 flex items-center justify-center gap-1.5">
+                    Get in touch
+                  </button>
+                </div>
+              </nav>
+            </div>
           </div>
-        </div>
+        )}
       </header>
 
       {/* Scroll to Top Button */}

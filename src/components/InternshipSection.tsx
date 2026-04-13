@@ -304,10 +304,55 @@ const InternshipSection = ({ progress = 0 }) => {
   return (
     <div className="w-full bg-white min-h-screen">
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        {/* Mobile: Content first, Image below */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          
+          {/* RIGHT: CONTENT - Shown first on mobile (order-1), second on desktop */}
+          <div
+            className="order-1 lg:order-2"
+            style={{
+              opacity: contentOpacity,
+              transform: `translateY(${contentTranslate}px)`,
+              transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
+            }}
+          >
+            <div className="inline-flex items-center gap-2 bg-cyan-100 px-4 py-2 rounded-full mb-6">
+              <span className="text-cyan-600 font-semibold text-sm">
+                🚀 Limited Seats Available
+              </span>
+            </div>
 
-          {/* LEFT: IMAGE ALWAYS VISIBLE */}
-          <div className="relative sticky top-24">
+            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+              Start Your Professional Journey With Us
+            </h3>
+
+            <p className="text-sm text-gray-600 mb-6">
+              Our internship program bridges the gap between academic learning
+              and industry requirements. We partner with top UK companies to
+              provide you with hands-on experience in your chosen field.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              {internshipHighlights.map((item, idx) => (
+                <div key={idx} className="flex items-start gap-3 group">
+                  <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300">
+                    {item.icon}
+                  </div>
+                  <div>
+                    <h4 className="font-semibold text-gray-900">
+                      {item.title}
+                    </h4>
+                    <p className="text-sm text-gray-500">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* LEFT: IMAGE - Shown second on mobile (order-2), first on desktop */}
+          <div className="relative sticky top-24 order-2 lg:order-1">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <div className="relative h-[400px] md:h-[450px]">
                 {internshipImages.map((image, idx) => (
@@ -357,49 +402,6 @@ const InternshipSection = ({ progress = 0 }) => {
                   />
                 ))}
               </div>
-            </div>
-          </div>
-
-          {/* RIGHT: CONTENT SCROLLS UP WHEN PREVIOUS SECTION REACHES 70% */}
-          <div
-            style={{
-              opacity: contentOpacity,
-              transform: `translateY(${contentTranslate}px)`,
-              transition: "opacity 0.3s ease-out, transform 0.3s ease-out",
-            }}
-          >
-            <div className="inline-flex items-center gap-2 bg-cyan-100 px-4 py-2 rounded-full mb-6">
-              <span className="text-cyan-600 font-semibold text-sm">
-                🚀 Limited Seats Available
-              </span>
-            </div>
-
-            <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
-              Start Your Professional Journey With Us
-            </h3>
-
-            <p className="text-sm text-gray-600 mb-6">
-              Our internship program bridges the gap between academic learning
-              and industry requirements. We partner with top UK companies to
-              provide you with hands-on experience in your chosen field.
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-              {internshipHighlights.map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 group">
-                  <div className="w-10 h-10 bg-cyan-100 rounded-lg flex items-center justify-center text-xl group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900">
-                      {item.title}
-                    </h4>
-                    <p className="text-sm text-gray-500">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
             </div>
           </div>
         </div>
